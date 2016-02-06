@@ -11,7 +11,6 @@ public class CaesarCiper {
         StringBuilder encrypted = new StringBuilder(input);
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String shiftedAlphabet = alphabet.substring(key) + alphabet.substring(0, key);
-        System.out.println(shiftedAlphabet);
 
         for (int i = 0; i < encrypted.length(); i++) {
             char currChar = encrypted.charAt(i);
@@ -73,6 +72,9 @@ public class CaesarCiper {
         System.out.println(ret);
 
         ret = encrypt("First Legion", 17);
+        System.out.println(ret);
+
+        ret = encrypt(ret, 26-17);
         System.out.println(ret);
     }
 
