@@ -31,7 +31,25 @@ public class WordLengths {
                 System.out.println(counts[i] + " words of length " + i + " : " + words[i]);
             }
         }
+
+        int maxIdx = indexOfMax(counts);
+        System.out.println("Max Index : " + maxIdx);
     }
+
+
+    public int indexOfMax(int[] values) {
+        int maxValue = 0;
+        int maxIdx = 0;
+        for (int i = 0; i < values.length; i++) {
+            int currValue = values[i];
+            if(maxValue < currValue) {
+                maxValue = currValue;
+                maxIdx = i;
+            }
+        }
+        return maxIdx;
+    }
+
 
     @Test
     public void testCountWordLengths() {
