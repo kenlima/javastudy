@@ -1,3 +1,4 @@
+import edu.duke.FileResource;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -7,13 +8,13 @@ import static org.junit.Assert.assertEquals;
  */
 public class CaesarBreaker {
     public String decrypt(String encrypted) {
-        CaesarCiper cc = new CaesarCiper();
         int dKey = getKey(encrypted);
+        CaesarCiper cc = new CaesarCiper(26-dKey);
 
-        return cc.encrypt(encrypted, 26-dKey);
+        return cc.encrypt(encrypted);
     }
 
-    private int getKey(String encrypted) {
+    public int getKey(String encrypted) {
         int[] freqs = countLetters(encrypted);
         int maxDex = maxIndex(freqs);
         int dKey = maxDex - 4; // guess encrypted key
@@ -23,30 +24,8 @@ public class CaesarBreaker {
         return dKey;
     }
 
-    public String decryptTwoKeys(String encrypted) {
-        String oddStr = halfOfString(encrypted, 0);
-        String evenStr = halfOfString(encrypted, 1);
-
-        int key1 = getKey(oddStr);
-        System.out.println("key1 is " + key1);
-        int key2 = getKey(evenStr);
-        System.out.println("key2 is " + key2);
-
-        CaesarCiper cc = new CaesarCiper();
-        String ret = cc.encryptTwoKeys(encrypted, 26-key1, 26-key2);
 
 
-        return ret;
-
-    }
-
-    public String halfOfString(String message, int start) {
-        StringBuilder halfOfStr = new StringBuilder();
-        for (int i = start; i < message.length(); i+=2) {
-            halfOfStr.append(message.charAt(i));
-        }
-        return halfOfStr.toString();
-    }
 
 
     public int maxIndex(int[] freqs) {
@@ -74,32 +53,21 @@ public class CaesarBreaker {
         return counts;
     }
 
-    @Test
-    public void testHalfOfString() {
-        CaesarBreaker cb = new CaesarBreaker();
-        String ret = cb.halfOfString("Qbkm Zgis", 0);
-        assertEquals("Qk gs", ret);
-
-        ret = cb.halfOfString("Qbkm Zgis", 1);
-        assertEquals("bmZi", ret);
-    }
 
     @Test
     public void testDecrypt() {
-        CaesarCiper cc = new CaesarCiper();
-        String ret = cc.encrypt("Just a test string with lots of eeeeeeeeeeeeeeeees", 5);
+        CaesarCiper cc = new CaesarCiper(5);
+        String ret = cc.encrypt("Just a test string with lots of eeeeeeeeeeeeeeeees");
         System.out.println(ret);
 
         CaesarBreaker cb = new CaesarBreaker();
         ret = cb.decrypt(ret);
         System.out.println(ret);
 
+        ret = cb.decrypt("Akag tjw Xibhr awoa aoee xakex znxag xwko");
+        System.out.println(ret);
+
+
     }
 
-    @Test
-    public void testDecryptTwoKeys() {
-        CaesarBreaker cb = new CaesarBreaker();
-        String ret = cb.decryptTwoKeys("Gwpv c vbuq pvokki yfve iqqu qc bgbgbgbgbgbgbgbgbu");
-        System.out.println(ret);
-    }
 }

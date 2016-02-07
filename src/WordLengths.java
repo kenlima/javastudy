@@ -52,7 +52,7 @@ public class WordLengths {
     public void testCountWordLengths() {
         WordLengths wordLengths = new WordLengths();
         int[] counts = new int[31];
-        wordLengths.countWordLengths(new FileResource("smallHamlet.txt"), counts);
+        wordLengths.countWordLengths(new FileResource("lotsOfWords.txt"), counts);
     }
 
 
