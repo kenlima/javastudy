@@ -1,3 +1,5 @@
+package coursera.javastudy1.week1;
+
 import edu.duke.FileResource;
 import org.junit.Test;
 
@@ -7,13 +9,17 @@ public class WordLengths {
         StringBuilder[] words = new StringBuilder[counts.length];
 
         for(String word : resource.words()) {
+
             StringBuilder sb = new StringBuilder(word);
             char first = sb.charAt(0);
-            char last = sb.charAt(word.length()-1);
-            if(!Character.isLetter(first)) {
+            if(isPunctuation(first)) {
                 sb.delete(0, 1);
             }
-            if(!Character.isLetter(last)) {
+            if(sb.length() == 0) {
+                continue;
+            }
+            char last = sb.charAt(sb.length()-1);
+            if(isPunctuation(last)) {
                 sb.deleteCharAt(sb.length()-1);
             }
             int k = sb.length();
@@ -36,6 +42,10 @@ public class WordLengths {
         System.out.println("Max Index : " + maxIdx);
     }
 
+    private boolean isPunctuation(char first) {
+        return first == '.';
+    }
+
 
     public int indexOfMax(int[] values) {
         int maxIdx = 0;
@@ -52,7 +62,7 @@ public class WordLengths {
     public void testCountWordLengths() {
         WordLengths wordLengths = new WordLengths();
         int[] counts = new int[31];
-        wordLengths.countWordLengths(new FileResource("lotsOfWords.txt"), counts);
+        wordLengths.countWordLengths(new FileResource("manywords.txt"), counts);
     }
 
 

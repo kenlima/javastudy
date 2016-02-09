@@ -1,3 +1,5 @@
+package coursera.javastudy1.week1;
+
 import edu.duke.FileResource;
 import org.junit.Test;
 
@@ -30,18 +32,22 @@ public class CaesarCiperTest {
 
     @Test
     public void simpleTests() throws Exception {
+        /*
         FileResource resource = new FileResource();
         String input = resource.asString();
+        */
 
-        CaesarCiper cc = new CaesarCiper(18);
-        String encrypted = cc.encrypt(input);
+        CaesarCiper cc = new CaesarCiper(15);
+        String encrypted = cc.encrypt("Can you imagine life WITHOUT the internet AND computers in your pocket?");
         System.out.println("encrypted : " + encrypted);
 
+        /*
         String decrypted = cc.decrypt(encrypted);
         System.out.println("decrypted : " + decrypted);
 
         CaesarBreaker cb = new CaesarBreaker();
         String breaked = cb.decrypt(encrypted);
         System.out.println("breaked : " + breaked);
+        */
     }
 }

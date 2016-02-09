@@ -1,4 +1,5 @@
-import edu.duke.FileResource;
+package coursera.javastudy1.week1;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

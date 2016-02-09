@@ -1,3 +1,5 @@
+package coursera.javastudy1.week1;
+
 import edu.duke.FileResource;
 import org.junit.Test;
 
@@ -22,16 +24,22 @@ public class CaesarBreakerTwoTest {
 
     @Test
     public void testDecryptTwoKeys() {
+        /*
         CaesarBreakerTwo cbt = new CaesarBreakerTwo();
-        String ret = cbt.decryptTwoKeys("Gwpv c vbuq pvokki yfve iqqu qc bgbgbgbgbgbgbgbgbu");
+        String ret = cbt.decryptTwoKeys("Aal uttx hm aal Qtct Fhljha pl Wbdl. Pvxvxlx!");
         System.out.println(ret);
-
+        */
+        /*
         CaesarCiperTwo cc = new CaesarCiperTwo(26-2, 26-20);
         ret = cc.encryptTwoKeys("Top ncmy qkff vi vguv vbg ycpx");
         System.out.println(ret);
+        */
 
-        FileResource resource = new FileResource("mysteryTwoKeysPractice.txt");
-        ret = cbt.decryptTwoKeys(resource.asString());
-        System.out.println(ret);
+
+        FileResource resource = new FileResource("mysteryTwoKeysQuiz.txt");
+        CaesarBreakerTwo cbt2 = new CaesarBreakerTwo();
+        String ret2 = cbt2.decryptTwoKeys(resource.asString());
+        System.out.println(ret2);
+
     }
 }

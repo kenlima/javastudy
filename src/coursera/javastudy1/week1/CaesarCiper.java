@@ -1,5 +1,4 @@
-import edu.duke.FileResource;
-import org.junit.Test;
+package coursera.javastudy1.week1;
 
 import static org.junit.Assert.assertEquals;
 
@@ -41,7 +40,6 @@ public class CaesarCiper {
     public String decrypt(String input) {
         CaesarCiper cc = new CaesarCiper(26-mainKey);
         return cc.encrypt(input);
-
     }
 
 }

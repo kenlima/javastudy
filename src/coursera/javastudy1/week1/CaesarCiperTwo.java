@@ -1,3 +1,5 @@
+package coursera.javastudy1.week1;
+
 import org.junit.Test;
 
 /**
