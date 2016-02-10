@@ -19,7 +19,7 @@ public class CodonCount {
 
         for (int i = start; i < dna.length(); i = i + CODON_SIZE) {
             int end = i + CODON_SIZE;
-            if(end > dna.length() -1) {
+            if (end > dna.length() - 1) {
                 break;
             }
             String codon = dna.substring(i, end);
@@ -40,23 +40,37 @@ public class CodonCount {
     }
 
     public String getMostCommonCodon() {
+        /*
         int maxFreqs = 0;
         String maxCodon = "";
-        for(Map.Entry<String, Integer> entry : codonMap.entrySet()) {
-            if(entry.getValue() > maxFreqs) {
+        for (Map.Entry<String, Integer> entry : codonMap.entrySet()) {
+            if (entry.getValue() > maxFreqs) {
                 maxFreqs = entry.getValue();
                 maxCodon = entry.getKey();
             }
         }
+        */
+
+        String maxCodon = codonMap.keySet().stream()
+                .max((key1, key2) -> Integer.compare(codonMap.get(key1), codonMap.get(key2)))
+                .get();
+
         return maxCodon;
     }
 
     public void printCodonCounts(int start, int end) {
+
+        /*
         for(String key : codonMap.keySet()) {
             if(codonMap.get(key) >= start && codonMap.get(key) <= end) {
                 System.out.println(key + " " + codonMap.get(key));
             }
         }
+
+        */
+        codonMap.keySet().stream()
+                .filter(key -> codonMap.get(key) >= start && codonMap.get(key) <= end)
+                .forEach(key -> System.out.println(key + " " + codonMap.get(key)));
     }
 
 }
