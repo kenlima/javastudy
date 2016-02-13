@@ -10,7 +10,7 @@ public class CaesarCiperTest {
 
     @Test
     public void testEncrypt() throws Exception {
-        int key = 17;
+        int key = 15;
         /*
         FileResource fr = new FileResource();
         String message = fr.asString();
@@ -22,7 +22,7 @@ public class CaesarCiperTest {
 
         CaesarCiper cc = new CaesarCiper(key);
 
-        String ret = cc.encrypt("First Legion");
+        String ret = cc.encrypt("Can you imagine life WITHOUT the internet AND computers in your pocket?");
         System.out.println(ret);
 
         ret = cc.decrypt(ret);
