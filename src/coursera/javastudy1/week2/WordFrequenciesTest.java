@@ -12,7 +12,7 @@ public class WordFrequenciesTest {
     public void testFindUnique() throws Exception {
         WordFrequencies wf = new WordFrequencies();
         wf.findUnique();
-        //System.out.println("The word that occurs most often and its count are : " +wf.findIndexOfMax());
+        System.out.println("The word that occurs most often and its count are : " +wf.findIndexOfMax());
         //System.out.println(wf.getNumberOfWords());
 
 

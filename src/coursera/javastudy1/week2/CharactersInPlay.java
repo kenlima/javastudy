@@ -35,10 +35,6 @@ public class CharactersInPlay {
             }
 
         }
-
-        for (int i = 0; i < chars.size(); i++) {
-            System.out.println(chars.get(i) + " : " + counts.get(i));
-        }
     }
 
     public void characterWithMostSpeakingPart() {
@@ -60,13 +56,5 @@ public class CharactersInPlay {
         }
     }
 
-    @Test
-    public void testFindAllCharacters() throws Exception {
-        CharactersInPlay cip = new CharactersInPlay();
-        cip.findAllCharacters();
-        System.out.println("=====");
-        cip.charactersWithNumParts(10, 15);
-        System.out.println("=====");
-        cip.characterWithMostSpeakingPart();
-    }
+
 }

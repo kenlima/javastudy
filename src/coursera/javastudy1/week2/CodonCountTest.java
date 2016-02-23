@@ -12,14 +12,14 @@ public class CodonCountTest {
 
     @Test
     public void testPrintCodonCounts() throws Exception {
-        FileResource fr = new FileResource("dnaMystery1.txt");
+        FileResource fr = new FileResource();
         String dna = fr.asString();
 
         CodonCount cc = new CodonCount();
         //cc.buildCodonMap(0, dna);
 
-        cc.buildCodonMap(1, dna);
-        cc.printCodonCounts(1, 6);
+        cc.buildCodonMap(0, dna);
+        cc.printCodonCounts(7, 7);
 
         //cc.buildCodonMap(2, dna);
         //cc.printCodonCounts(1, 6);

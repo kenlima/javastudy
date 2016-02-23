@@ -9,5 +9,13 @@ import static org.junit.Assert.*;
  */
 public class CharactersInPlayTest {
 
-
+    @Test
+    public void testFindAllCharacters() throws Exception {
+        CharactersInPlay cip = new CharactersInPlay();
+        cip.findAllCharacters();
+        System.out.println("=====");
+        cip.charactersWithNumParts(10, 15);
+        System.out.println("=====");
+        cip.characterWithMostSpeakingPart();
+    }
 }

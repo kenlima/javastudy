@@ -18,10 +18,12 @@ public class WordsInFilesTest {
         wif.buildWordFileMap();
         int maxNum = wif.maxNumber();
         System.out.println("maxNum : " +maxNum );
+        wif.printFileIn("tree");
 
+        /*
         ArrayList<String> files = wif.wordsInFiles(maxNum);
         files.forEach(word -> wif.printFileIn(word));
-
-        wif.printAllItemsInMap();
+        */
+        //wif.printAllItemsInMap();
     }
 }
