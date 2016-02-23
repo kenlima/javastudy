@@ -35,7 +35,7 @@ public class CodonCount {
         String mostCoddon = getMostCommonCodon();
         System.out.println("And most common codon is " + mostCoddon + " with count " + codonMap.get(mostCoddon));
 
-        printCodonCounts(1, 5);
+
 
     }
 

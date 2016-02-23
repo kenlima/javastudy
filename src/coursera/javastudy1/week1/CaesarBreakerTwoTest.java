@@ -28,8 +28,8 @@ public class CaesarBreakerTwoTest {
         CaesarBreakerTwo cbt = new CaesarBreakerTwo();
         String ret = cbt.decryptTwoKeys("Aal uttx hm aal Qtct Fhljha pl Wbdl. Pvxvxlx!");
         System.out.println(ret);
-        */
-        /*
+
+
         CaesarCiperTwo cc = new CaesarCiperTwo(26-2, 26-20);
         ret = cc.encryptTwoKeys("Top ncmy qkff vi vguv vbg ycpx");
         System.out.println(ret);
