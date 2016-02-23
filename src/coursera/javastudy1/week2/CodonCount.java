@@ -63,14 +63,14 @@ public class CodonCount {
         /*
         for(String key : codonMap.keySet()) {
             if(codonMap.get(key) >= start && codonMap.get(key) <= end) {
-                System.out.println(key + " " + codonMap.get(key));
+                System.out.println(key + " : " + codonMap.get(key));
             }
         }
 
         */
         codonMap.keySet().stream()
                 .filter(key -> codonMap.get(key) >= start && codonMap.get(key) <= end)
-                .forEach(key -> System.out.println(key + " " + codonMap.get(key)));
+                .forEach(key -> System.out.println(key + " : " + codonMap.get(key)));
     }
 
 }
