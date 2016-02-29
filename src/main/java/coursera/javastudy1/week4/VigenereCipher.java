@@ -36,7 +36,7 @@ public class VigenereCipher {
         StringBuilder sb = new StringBuilder();
         int i = 0;
         for (char c : input.toCharArray()) {
-            int keyIdx = i % input.length();
+            int keyIdx = i % ciphers.length;
             CaesarCipher cc = ciphers[keyIdx];
             sb.append(cc.decryptLetter(c));
             i++;

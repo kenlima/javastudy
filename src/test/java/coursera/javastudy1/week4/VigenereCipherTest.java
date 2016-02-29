@@ -24,6 +24,12 @@ public class VigenereCipherTest {
 
     @Test
     public void testDecrypt() throws Exception {
+        int[] keys = new int[] {17, 14, 12, 4};
+        FileResource fr = new FileResource("week4/VigenereTestData/titus-small.txt");
 
+        VigenereCipher vc = new VigenereCipher(keys);
+        String encrypted = vc.encrypt(fr.asString());
+        String decrypted = vc.decrypt(encrypted);
+        System.out.println(decrypted);
     }
 }
