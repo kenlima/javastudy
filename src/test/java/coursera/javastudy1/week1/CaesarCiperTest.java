@@ -4,30 +4,20 @@ import edu.duke.FileResource;
 import org.junit.Test;
 
 /**
- * Created by jwlee on 2016-02-07.
+ * Created by jwlee on 2016. 2. 29..
  */
 public class CaesarCiperTest {
 
     @Test
     public void testEncrypt() throws Exception {
-        int key = 15;
-        /*
-        FileResource fr = new FileResource();
-        String message = fr.asString();
-        String encrypted = encrypt(message, key);
-        System.out.println(encrypted);
-        String decrypted = encrypt(encrypted, 26-key);
-        System.out.println(decrypted);
-        */
 
-        CaesarCiper cc = new CaesarCiper(key);
+        FileResource fr = new FileResource("week4/VigenereTestData/titus-small.txt");
+        CaesarCipher cc = new CaesarCipher(5);
+        String result = cc.encrypt(fr.asString());
+        System.out.println("encrytped : " + result);
+        String decrypted = cc.decrypt(result);
+        System.out.println("decrytped : " + decrypted);
 
-        String ret = cc.encrypt("Can you imagine life WITHOUT the internet AND computers in your pocket?");
-        System.out.println(ret);
-
-        ret = cc.decrypt(ret);
-
-        System.out.println(ret);
     }
 
     @Test
@@ -37,7 +27,7 @@ public class CaesarCiperTest {
         String input = resource.asString();
         */
 
-        CaesarCiper cc = new CaesarCiper(15);
+        CaesarCipher cc = new CaesarCipher(15);
         String encrypted = cc.encrypt("Can you imagine life WITHOUT the internet AND computers in your pocket?");
         System.out.println("encrypted : " + encrypted);
 

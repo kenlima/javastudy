@@ -1,7 +1,5 @@
 package coursera.javastudy1.week1;
 
-import org.junit.Test;
-
 /**
  * Created by jwlee on 2016-02-07.
  */
@@ -27,8 +25,8 @@ public class CaesarCiperTwo {
             }
         }
 
-        CaesarCiper cc1 = new CaesarCiper(key1);
-        CaesarCiper cc2 = new CaesarCiper(key2);
+        CaesarCipher cc1 = new CaesarCipher(key1);
+        CaesarCipher cc2 = new CaesarCipher(key2);
         String encryptedOddStr = cc1.encrypt(oddStr.toString());
         String encryptedEvenStr = cc2.encrypt(evenStr.toString());
 
