@@ -3,6 +3,8 @@ package coursera.javastudy1.week4;
 import edu.duke.FileResource;
 import org.junit.Test;
 
+import java.util.HashSet;
+
 import static org.junit.Assert.*;
 
 /**
@@ -70,4 +72,12 @@ public class VigenereBreakerTest {
         vb.breakVigenere();
     }
 
+    @Test
+    public void testReadDictionary() throws Exception {
+
+        VigenereBreaker vb = new VigenereBreaker();
+        FileResource fr = new FileResource();
+        HashSet<String> hs = vb.readDictionary(fr);
+        System.out.println(hs);
+    }
 }

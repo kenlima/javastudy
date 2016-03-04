@@ -3,6 +3,8 @@ package coursera.javastudy1.week4;
 import coursera.javastudy1.week1.CaesarBreaker;
 import edu.duke.FileResource;
 
+import java.util.HashSet;
+
 /**
  * Created by jwlee on 2016. 3. 1..
  */
@@ -35,5 +37,15 @@ public class VigenereBreaker {
         String ret = vc.decrypt(str);
 
         System.out.println(ret);
+    }
+
+    public HashSet<String> readDictionary(FileResource fr) {
+        HashSet<String> hs = new HashSet<String>();
+        for(String line : fr.lines()) {
+            line = line.toLowerCase().trim();
+            hs.add(line);
+        }
+
+        return hs;
     }
 }
