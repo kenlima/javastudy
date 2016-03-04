@@ -1,5 +1,6 @@
 package coursera.javastudy1.week4;
 
+import edu.duke.FileResource;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -48,4 +49,25 @@ public class VigenereBreakerTest {
         ret = vb.sliceString("abcdefghijklm", 4, 5);
         System.out.println(ret);
     }
+
+    @Test
+    public void testTryKeyLength() throws Exception {
+        FileResource fr = new FileResource();
+        VigenereBreaker vb = new VigenereBreaker();
+        int[] rets = vb.tryKeyLength(fr.asString(), 4, 'e');
+
+        for (int ret : rets) {
+            System.out.println(ret);
+        }
+
+
+    }
+
+    @Test
+    public void testBreakVigenere() throws Exception {
+
+        VigenereBreaker vb = new VigenereBreaker();
+        vb.breakVigenere();
+    }
+
 }
