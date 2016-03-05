@@ -1,10 +1,14 @@
 package coursera.javastudy1.week4;
 
 import coursera.javastudy1.week1.CaesarBreaker;
+import edu.duke.DirectoryResource;
 import edu.duke.FileResource;
 
+import java.io.File;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * Created by jwlee on 2016. 3. 1..
@@ -31,13 +35,32 @@ public class VigenereBreaker {
     }
 
     public void breakVigenere() {
-        FileResource fr = new FileResource();
-        String str = fr.asString();
+//        FileResource fr = new FileResource("week4/VigenereTestData/athens_keyflute.txt");
+        FileResource fr = new FileResource("week4/secretmessage4.txt");
+        String encrypted = fr.asString();
 
-        FileResource dic = new FileResource("week4/dictionaries/English");
-        HashSet<String> dictionary = readDictionary(dic);
 
-        String ret = breakForLanguage(str, dictionary);
+        HashMap<String, HashSet<String>> dictionaries = new HashMap<>();
+
+        List<String> list = Arrays.asList("week4/dictionaries/Danish",
+                "week4/dictionaries/Dutch",
+                "week4/dictionaries/English",
+                "week4/dictionaries/French",
+                "week4/dictionaries/German",
+                "week4/dictionaries/Italian",
+                "week4/dictionaries/Portuguese",
+                "week4/dictionaries/Spanish");
+        for(String fname : list) {
+            FileResource dic = new FileResource(fname);
+            HashSet<String> dictionary = readDictionary(dic);
+            dictionaries.put(fname, dictionary);
+            System.out.println("Loaded " + fname + " dictionary.");
+
+        }
+
+        System.out.println("Loaded All dictionaries");
+
+        breakForAllLanguages(encrypted, dictionaries);
 
 /*
         int[] keys = tryKeyLength(str, 4, 'e');
@@ -45,7 +68,6 @@ public class VigenereBreaker {
         String ret = vc.decrypt(str);
 */
 
-        System.out.println(ret);
     }
 
     public HashSet<String> readDictionary(FileResource fr) {
@@ -54,11 +76,10 @@ public class VigenereBreaker {
             line = line.toLowerCase().trim();
             hs.add(line);
         }
-
         return hs;
     }
 
-    public int countWorks(String message, HashSet<String> dictionary) {
+    public int countWords(String message, HashSet<String> dictionary) {
         String[] words = message.split("\\W+");
         int ret = 0;
         for (String word : words) {
@@ -73,14 +94,17 @@ public class VigenereBreaker {
 
     public String breakForLanguage(String encrypted, HashSet<String> dictionary) {
         int maxCount = 0;
+        int totalCount = 0;
         String ret = null;
         int[] guessKeys = null;
+        char mostChar = mostCommonCharIn(dictionary);
         for (int i = 1; i <= 100; i++) {
-            int[] keys = tryKeyLength(encrypted, i, 'e');
+            int[] keys = tryKeyLength(encrypted, i, mostChar);
             VigenereCipher vc = new VigenereCipher(keys);
             String decrypt = vc.decrypt(encrypted);
-            int count = countWorks(decrypt, dictionary);
+            int count = countWords(decrypt, dictionary);
             if (maxCount < count) {
+                totalCount = decrypt.split("\\W+").length;
                 maxCount = count;
                 ret = decrypt;
                 guessKeys = keys;
@@ -88,9 +112,42 @@ public class VigenereBreaker {
 
         }
         System.out.println("guess keys : " + Arrays.toString(guessKeys));
-        System.out.println("valid words count : " + maxCount);
+        System.out.println("guess keys length : " + guessKeys.length);
+        System.out.println("valid words count : " + maxCount + ", " + totalCount);
+        System.out.println("most common char : " + mostChar);
+        System.out.println(ret.substring(0, ret.indexOf("\n")));
         return ret;
 
 
     }
+
+    public char mostCommonCharIn(HashSet<String> dictionary) {
+        HashMap<String, Integer> chars = new HashMap<>();
+        for (String s : dictionary) {
+            char[] cs = s.toCharArray();
+            for (char c : cs) {
+                String ch = String.valueOf(c);
+                if (chars.containsKey(ch)) {
+                    chars.put(ch, chars.get(ch) + 1);
+                } else {
+                    chars.put(ch, 1);
+                }
+            }
+        }
+
+        String mostCh = chars.keySet().stream().max((c1, c2) -> Integer.compare(chars.get(c1), chars.get(c2))).get();
+        return mostCh.charAt(0);
+    }
+
+    public void breakForAllLanguages(String encrypted, HashMap<String, HashSet<String>> languages) {
+        for (String language : languages.keySet()) {
+            System.out.println("breaking cypher by " + language);
+            String ret = breakForLanguage(encrypted, languages.get(language));
+//            System.out.println(ret);
+            System.out.println("+++++++++++++++++++++++++++++++++++");
+        }
+
+    }
+
+
 }

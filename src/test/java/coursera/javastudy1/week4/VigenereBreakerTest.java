@@ -80,4 +80,5 @@ public class VigenereBreakerTest {
         HashSet<String> hs = vb.readDictionary(fr);
         System.out.println(hs);
     }
+
 }
